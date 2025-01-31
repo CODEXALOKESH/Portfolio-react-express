@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import ProjectCard from '../components/ProjectCard.jsx';
 import axios from 'axios';
 import './Projects.css';
+import { host } from '../../constants.js';
 
 const Projects = () => {
   const [dataset, setDataset] = useState([]); // Use state for dataset
-  const portlink = "http://localhost:3000";
 
   const fetchData = async () => {
     try {
-      const response = await axios.post(`${portlink}/api/v1/project-fetch`, {
+      const response = await axios.post(`${host}/api/v1/project-fetch`, {
         passw: "alokeshPortfolio",
       });
       setDataset(response.data.projects); // Assuming 'projects' is an array in the response
@@ -25,6 +25,7 @@ const Projects = () => {
 
   return (
     <>
+    
       <div className="project-base">
         {dataset.map((project, index) => (
           <ProjectCard
